@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#fcfaf5">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Cart on the Go – Edge App</title>
+  <title>Edge Restaurant – Cart on the Go</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body class="app-mode">
-  <header class="topbar">
+  <header class="topbar" id="appTopbar">
     <div class="brand">
       <div class="brand__cart">
         <svg viewBox="0 0 48 32" width="44" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -31,13 +31,11 @@
       <button class="cart-btn" id="cartToggle" aria-label="Open cart">
         🛒 <span class="cart-btn__count" id="cartCount">0</span>
       </button>
-      <a href="login.html" class="login-btn" id="loginBtn">Login</a>
     </div>
   </header>
 
   <section class="hero app-hero" id="home">
     <div class="hero__content">
-      <div class="app-welcome reveal" id="appWelcome">📱 Edge Campus App · Pre-order &amp; Pick Up</div>
       <h1 class="reveal">Order from<br>Edge, on the go!</h1>
       <p class="reveal" style="--d:.15s">Pre-order your favourite food from Edge<br>and pick it up at your convenience.</p>
       <a href="#menu" class="btn reveal" id="startOrdering" style="--d:.3s">🛒 Start Ordering <span class="btn__arrow">→</span></a>
@@ -160,6 +158,6 @@
   </aside>
 
   <div class="toast" id="toast"></div>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

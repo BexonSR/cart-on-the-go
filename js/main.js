@@ -204,19 +204,35 @@ if (user) {
     $('appWelcome').textContent = `👋 Hi, ${user.name} · 🏛️ ${user.faculty}`;
   }
   if (user.role === 'admin') {
-    lb.textContent = 'Admin Panel';
-    lb.href = 'admin.html';
+    if (lb) {
+      lb.textContent = 'Admin Panel';
+      lb.href = 'admin.html';
+    }
     if ($('dockAccount')) {
       $('dockAccount').href = 'admin.html';
       $('dockAccountLabel').textContent = 'Admin';
     }
   } else {
-    lb.textContent = 'Hi, ' + user.name.split(' ')[0] + ' · Logout';
-    lb.href = '#';
-    lb.onclick = (e) => { e.preventDefault(); localStorage.removeItem('edgeUser'); location.reload(); };
+    if (lb) {
+      lb.textContent = 'Hi, ' + user.name.split(' ')[0] + ' · Logout';
+      lb.href = '#';
+      lb.onclick = (e) => { e.preventDefault(); localStorage.removeItem('edgeUser'); location.reload(); };
+    }
     if ($('dockAccountLabel')) $('dockAccountLabel').textContent = user.name.split(' ')[0];
   }
 }
+
+// Prevent page scrolling in app-mode (only allow horizontal category strip & cart drawer list)
+document.addEventListener('touchmove', (e) => {
+  if (!e.target.closest('#menuCats, #cartList')) {
+    e.preventDefault();
+  }
+}, { passive: false });
+window.addEventListener('wheel', (e) => {
+  if (!e.target.closest('#menuCats, #cartList')) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 // App Bottom Dock navigation
 if ($('dockHome')) {

@@ -1528,31 +1528,40 @@ ul {
   gap: 8px;
 }
 
-html:has(body.app-mode:not(.menu-open)),
-body.app-mode:not(.menu-open) {
-  height: 100vh;
-  height: 100dvh;
-  max-height: 100dvh;
+html,
+body.app-mode {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
   overflow: hidden !important;
-  overscroll-behavior: none;
+  overscroll-behavior: none !important;
+  touch-action: manipulation;
 }
 
 .app-mode {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  overscroll-behavior: none;
+}
+@media (max-width: 900px) {
+  .app-mode .topbar {
+    grid-template-columns: 1fr auto;
+  }
 }
 .app-mode .app-hero {
-  height: 100vh;
-  height: 100dvh;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   min-height: 0 !important;
-  max-height: 100dvh;
-  overflow: hidden;
-  padding: clamp(100px, 14vh, 130px) 5vw clamp(92px, 13vh, 120px) 8vw;
+  max-height: 100%;
+  overflow: hidden !important;
+  padding: clamp(96px, 14vh, 130px) 5vw clamp(92px, 13vh, 120px) 8vw;
 }
 @media (max-width: 768px) {
   .app-mode .app-hero {
-    padding: clamp(98px, 14vh, 122px) 6vw clamp(86px, 12.5vh, 105px);
+    padding: clamp(92px, 13.5vh, 118px) 6vw clamp(84px, 12vh, 102px);
   }
 }
 .app-mode .features {
@@ -1564,13 +1573,195 @@ body.app-mode:not(.menu-open) {
   }
 }
 .app-mode.menu-open .app-hero {
-  display: none;
+  display: none !important;
+}
+@media (max-width: 900px) {
+  .app-mode.menu-open .topbar {
+    display: none !important;
+  }
 }
 .app-mode .app-menu {
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding-top: clamp(105px, 15vh, 135px);
-  padding-bottom: clamp(96px, 13vh, 125px);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  max-height: 100%;
+  overflow: hidden !important;
+  padding: clamp(86px, 11vh, 110px) clamp(14px, 4vw, 56px) 82px;
+}
+@media (max-width: 900px) {
+  .app-mode .app-menu {
+    padding: 16px 14px 80px;
+    align-items: center;
+  }
+}
+.app-mode .app-menu .menu__header {
+  margin-bottom: clamp(10px, 2vh, 22px);
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu .menu__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu h2 {
+    font-size: clamp(1.25rem, 4.8vw, 1.65rem);
+  }
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu .menu__kicker {
+    margin-bottom: 3px;
+    font-size: 0.65rem;
+  }
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu .menu__note {
+    transform: scale(0.75);
+    transform-origin: right center;
+    margin: -10px -6px -10px 0;
+  }
+}
+@media (max-width: 480px) {
+  .app-mode .app-menu .menu__note {
+    display: none;
+  }
+}
+.app-mode .app-menu .menu__body {
+  gap: clamp(8px, 1.5vh, 20px);
+}
+@media (max-width: 980px) {
+  .app-mode .app-menu .menu__cats {
+    padding: 2px 2px 4px;
+  }
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu .cat-pill {
+    height: 34px;
+    padding: 0 13px;
+    font-size: 0.75rem;
+  }
+}
+.app-mode .app-menu .menu__grid {
+  gap: clamp(8px, 1.4vw, 18px);
+}
+.app-mode .app-menu .card {
+  padding: clamp(6px, 1vh, 9px) clamp(6px, 1vw, 9px) clamp(8px, 1.4vh, 14px);
+}
+.app-mode .app-menu .card__media {
+  margin-bottom: clamp(10px, 1.6vh, 16px);
+}
+.app-mode .app-menu .card__media img {
+  max-height: clamp(64px, 11.5vh, 140px);
+}
+.app-mode .app-menu .card h3 {
+  font-size: clamp(0.82rem, 1.15vw, 1.02rem);
+  margin-bottom: clamp(6px, 1.1vh, 12px);
+}
+.app-mode .app-menu .card__price {
+  font-size: clamp(0.8rem, 1.1vw, 0.98rem);
+}
+.app-mode .app-menu .card button {
+  padding: 5px 11px;
+  font-size: 0.74rem;
+}
+.app-mode .app-menu .menu__bar {
+  margin-top: clamp(10px, 1.8vh, 22px);
+  padding: 8px 12px 8px 20px;
+}
+@media (max-width: 900px) {
+  .app-mode .app-menu .menu__bar {
+    padding: 8px 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu .menu__bar-info {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .app-mode .app-menu .menu__bar-actions {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.app-mode .app-menu .menu__bar-summary {
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  gap: 8px;
+}
+.app-mode .app-menu .menu__bar-btn {
+  padding: 9px 16px;
+  font-size: 0.78rem;
+}
+.app-mode.login-page {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  max-height: 100%;
+  overflow: hidden !important;
+  padding: 16px clamp(16px, 5vw, 80px) 82px;
+  align-content: center;
+  gap: clamp(10px, 2vh, 28px);
+}
+.app-mode.login-page .login-hero .brand {
+  margin-bottom: clamp(8px, 1.5vh, 20px);
+}
+.app-mode.login-page .login-hero h1 {
+  font-size: clamp(1.35rem, 3vw, 2.6rem);
+  margin-bottom: 6px;
+}
+@media (max-width: 768px) {
+  .app-mode.login-page .login-hero p {
+    display: none;
+  }
+}
+.app-mode.login-page .login-card {
+  padding: clamp(16px, 2.5vh, 30px) clamp(16px, 3.5vw, 34px);
+}
+.app-mode.login-page .login-card h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  margin-bottom: 2px;
+}
+.app-mode.login-page .login-card > p {
+  margin-bottom: clamp(10px, 1.8vh, 18px);
+  font-size: 0.8rem;
+}
+.app-mode.login-page .login-card__or {
+  margin-top: 10px;
+}
+.app-mode.login-page .login-card__switch {
+  margin-top: 8px;
+  font-size: 0.78rem;
+}
+.app-mode.login-page .login-card__hours {
+  margin-top: 6px;
+  font-size: 0.72rem;
+}
+.app-mode.login-page .auth-tabs {
+  margin-bottom: 12px;
+}
+.app-mode.login-page .auth-tabs__tab {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+}
+.app-mode.login-page .field {
+  height: clamp(38px, 5.2vh, 48px);
+  margin-bottom: clamp(8px, 1.2vh, 12px);
+}
+.app-mode.login-page .login-submit {
+  padding: 11px 24px;
 }
 .app-mode .toast {
   bottom: 84px;
