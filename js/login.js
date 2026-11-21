@@ -14,11 +14,25 @@ $('loginForm').addEventListener('submit', (e) => {
   });
   if (!ok) return;
 
+  const name = $('name').value.trim();
+  const sid = $('sid').value.trim();
+  const faculty = $('faculty').value;
+  const isAdmin = name.toLowerCase() === 'admin' && sid.toLowerCase() === 'admin';
+
   localStorage.setItem('edgeUser', JSON.stringify({
-    name: $('name').value.trim(), id: $('sid').value.trim(), faculty: $('faculty').value
+    name: isAdmin ? 'Admin' : name,
+    id: sid,
+    faculty,
+    role: isAdmin ? 'admin' : 'student'
   }));
+
   const t = $('toast');
-  t.textContent = 'Welcome, ' + $('name').value.trim() + '!';
+  t.textContent = isAdmin
+    ? `Welcome Admin (${faculty})! Opening dashboard...`
+    : `Welcome, ${name}!`;
   t.classList.add('show');
-  setTimeout(() => (location.href = 'index.html'), 900);
+
+  setTimeout(() => {
+    location.href = isAdmin ? 'admin.html' : 'index.html';
+  }, 800);
 });

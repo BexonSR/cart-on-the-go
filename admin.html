@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Order Dashboard – Edge Restaurant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+  <header class="topbar admin-topbar">
+    <a href="index.html" class="brand">
+      <div class="brand__cart">
+        <svg viewBox="0 0 48 32" width="44" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 10h8M5 15h8M8 20h6"/><path d="M18 5h5l3 15h16l3-11H24"/><circle cx="28" cy="26" r="2"/><circle cx="40" cy="26" r="2"/>
+        </svg>
+        <span>cart<br><small>on the go</small></span>
+      </div>
+      <span class="brand__divider"></span>
+      <div class="brand__edge">edge<small>admin panel</small></div>
+    </a>
+    <div class="topbar__right">
+      <div class="pill">
+        <span id="adminFacultyBadge">🏛️ All Faculties</span>
+        <span class="pill__sep"></span>
+        <span class="pill__uni">🎓 NSBM Green University</span>
+      </div>
+      <a href="index.html" class="admin-nav-btn">Storefront</a>
+      <button type="button" class="login-btn" id="adminLogout">Logout</button>
+    </div>
+  </header>
+
+  <main class="admin">
+    <div class="admin__container">
+      <div class="admin__head reveal">
+        <div>
+          <div class="menu__kicker"><span>LIVE PRE-ORDERS</span><i class="menu__kicker-line"></i></div>
+          <h1>Order Management Dashboard</h1>
+        </div>
+        <div class="admin__head-actions">
+          <button type="button" class="cat-pill" id="addFakeOrderBtn">+ Generate Fake Order</button>
+          <button type="button" class="cat-pill" id="resetDemoBtn">↺ Reset Demo Data</button>
+        </div>
+      </div>
+
+      <section class="admin__stats reveal" style="--d:.1s" aria-label="Order statistics">
+        <article class="stat-card">
+          <span class="stat-card__label">Total Orders</span>
+          <strong class="stat-card__value" id="statTotal">0</strong>
+          <small class="stat-card__sub">Today's pre-orders</small>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Pending &amp; Preparing</span>
+          <strong class="stat-card__value" id="statActive">0</strong>
+          <small class="stat-card__sub">In kitchen queue</small>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Ready for Pickup</span>
+          <strong class="stat-card__value" id="statReady">0</strong>
+          <small class="stat-card__sub">Awaiting student collection</small>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Total Revenue</span>
+          <strong class="stat-card__value" id="statRevenue">Rs. 0</strong>
+          <small class="stat-card__sub">Across all faculties</small>
+        </article>
+      </section>
+
+      <section class="admin__controls reveal" style="--d:.2s">
+        <div class="admin__tabs" id="statusTabs">
+          <button type="button" class="cat-pill active" data-status="All">All Orders</button>
+          <button type="button" class="cat-pill" data-status="Pending">⏳ Pending</button>
+          <button type="button" class="cat-pill" data-status="Preparing">🍳 Preparing</button>
+          <button type="button" class="cat-pill" data-status="Ready">✅ Ready</button>
+          <button type="button" class="cat-pill" data-status="Completed">🎉 Completed</button>
+        </div>
+        <div class="admin__filters">
+          <label class="admin__input">
+            🔍 <input type="search" id="orderSearch" placeholder="Search ID, student name, food...">
+          </label>
+          <label class="admin__input">
+            🏛️
+            <select id="facultyFilter">
+              <option value="All">All Faculties</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Business">Business</option>
+              <option value="Science">Science</option>
+              <option value="Arts">Arts</option>
+              <option value="Medicine">Medicine</option>
+              <option value="Law">Law</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="admin__orders" id="ordersGrid" aria-label="Orders list"></section>
+    </div>
+  </main>
+
+  <div class="overlay" id="detailOverlay"></div>
+  <aside class="drawer detail-drawer" id="detailDrawer" aria-hidden="true">
+    <div class="drawer__head">
+      <div>
+        <span class="detail-drawer__id" id="modalOrderId">#ORD-1041</span>
+        <h3 id="modalStudentName">Student Name</h3>
+      </div>
+      <button type="button" id="detailClose" aria-label="Close">✕</button>
+    </div>
+    <div class="detail-drawer__body" id="modalBody"></div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/admin.js"></script>
+</body>
+</html>
