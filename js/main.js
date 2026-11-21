@@ -112,6 +112,18 @@ $('cartToggle').onclick = () => toggleDrawer(true);
 $('barViewCart').onclick = () => toggleDrawer(true);
 $('cartClose').onclick = $('overlay').onclick = () => toggleDrawer(false);
 
+// Info Drawer
+const toggleInfo = (open) => {
+  if (!$('infoDrawer')) return;
+  $('infoDrawer').classList.toggle('open', open);
+  $('infoOverlay').classList.toggle('open', open);
+  $('infoDrawer').setAttribute('aria-hidden', !open);
+};
+if ($('infoToggle')) {
+  $('infoToggle').onclick = () => toggleInfo(true);
+  $('infoClose').onclick = $('infoOverlay').onclick = () => toggleInfo(false);
+}
+
 function toast(msg) {
   const t = $('toast');
   t.textContent = msg;
@@ -222,14 +234,14 @@ if (user) {
   }
 }
 
-// Prevent page scrolling in app-mode (only allow horizontal category strip & cart drawer list)
+// Prevent page scrolling in app-mode (only allow horizontal category strip & drawer lists)
 document.addEventListener('touchmove', (e) => {
-  if (!e.target.closest('#menuCats, #cartList')) {
+  if (!e.target.closest('#menuCats, #cartList, .info-drawer__body')) {
     e.preventDefault();
   }
 }, { passive: false });
 window.addEventListener('wheel', (e) => {
-  if (!e.target.closest('#menuCats, #cartList')) {
+  if (!e.target.closest('#menuCats, #cartList, .info-drawer__body')) {
     e.preventDefault();
   }
 }, { passive: false });

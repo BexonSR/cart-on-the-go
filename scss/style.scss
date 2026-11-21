@@ -95,6 +95,21 @@ ul { list-style: none; }
   }
 }
 
+.info-btn {
+  display: inline-grid; place-items: center;
+  border: 1px solid rgba($green, .18);
+  background: $peach; color: $green;
+  width: clamp(38px, 4.2vw, 46px); height: clamp(38px, 4.2vw, 46px);
+  border-radius: 50%; cursor: pointer; flex-shrink: 0;
+  transition: transform .35s $ease, background .3s, color .3s;
+  @include tablet { grid-column: 3; grid-row: 1; }
+  &:hover {
+    transform: scale(1.1);
+    background: $green;
+    color: #fff;
+  }
+}
+
 // ---------- Login button (header) ----------
 .login-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -626,6 +641,111 @@ ul { list-style: none; }
   &__total { display: flex; justify-content: space-between; margin: 20px 0; color: $green; font-size: 1.1rem; }
 }
 
+// ---------- Info Drawer ----------
+.info-drawer {
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__card {
+    background: $peach;
+    border: 1px solid rgba($green, .12);
+    border-radius: 20px;
+    padding: 22px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: $green;
+    color: #fff;
+    font-size: 1.5rem;
+    display: grid;
+    place-items: center;
+  }
+
+  &__credit {
+    font-size: .92rem;
+    line-height: 1.5;
+    color: #3b423c;
+    strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: $green;
+    }
+  }
+
+  &__sub {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #6b7066;
+    margin-bottom: -6px;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba($green, .12);
+  transition: transform .3s $ease, box-shadow .3s $ease, border-color .3s;
+
+  svg { flex-shrink: 0; }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    strong { font-size: .92rem; color: #1d2821; }
+    small { font-size: .78rem; color: #676c62; overflow: hidden; text-overflow: ellipsis; }
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba($green, .1);
+  }
+
+  &--wa {
+    background: #eefbf2;
+    border-color: rgba(#25d366, .35);
+    svg, div strong { color: #15803d; }
+  }
+
+  &--gh {
+    background: #f4f5f6;
+    border-color: rgba(#24292f, .18);
+    svg, div strong { color: #24292f; }
+  }
+
+  &--mail {
+    background: #fff4f2;
+    border-color: rgba(#d93025, .22);
+    svg, div strong { color: #b91c1c; }
+  }
+}
+
 .toast {
   position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 100px); background: $green; color: #fff;
   padding: 12px 24px; border-radius: 30px; z-index: 200; opacity: 0;
@@ -1030,7 +1150,7 @@ body.app-mode {
 
   .topbar {
     @include tablet {
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr auto auto;
     }
   }
 
