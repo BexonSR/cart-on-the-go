@@ -92,6 +92,8 @@ const DEMO_ORDERS = [
 ];
 
 const $ = (id) => document.getElementById(id);
+const homeUrl = sessionStorage.getItem('edgeAppMode') === '1' ? 'app.html' : 'index.html';
+document.querySelectorAll('a[href="index.html"]').forEach((a) => (a.href = homeUrl));
 
 // Verify admin user or default demo admin session
 const currentUser = JSON.parse(localStorage.getItem('edgeUser') || 'null');

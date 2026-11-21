@@ -1,4 +1,7 @@
 const $ = (id) => document.getElementById(id);
+const homeUrl = sessionStorage.getItem('edgeAppMode') === '1' ? 'app.html' : 'index.html';
+const brandLink = document.querySelector('.login-hero .brand');
+if (brandLink) brandLink.href = homeUrl;
 
 $('signupForm').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -34,6 +37,6 @@ $('signupForm').addEventListener('submit', (e) => {
   t.classList.add('show');
 
   setTimeout(() => {
-    location.href = 'index.html';
+    location.href = homeUrl;
   }, 850);
 });

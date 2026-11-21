@@ -109,6 +109,7 @@ function renderCart() {
   $('cartTotal').textContent = 'Rs. ' + total;
   $('barCartCount').textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
   $('barCartTotal').textContent = 'Rs. ' + total;
+  if ($('dockCartCount')) $('dockCartCount').textContent = count;
 
   $('cartList').innerHTML = items.length
     ? items.map(([id, q]) => {
@@ -174,15 +175,46 @@ $('checkout').onclick = () => {
 renderCart();
 
 // Login state in header
+const isAppPage = document.body.classList.contains('app-mode');
+if (isAppPage) sessionStorage.setItem('edgeAppMode', '1');
+
 const user = JSON.parse(localStorage.getItem('edgeUser') || 'null');
 if (user) {
   const lb = $('loginBtn');
+  if ($('appWelcome')) {
+    $('appWelcome').textContent = `👋 Hi, ${user.name} · 🏛️ ${user.faculty}`;
+  }
   if (user.role === 'admin') {
     lb.textContent = 'Admin Panel';
     lb.href = 'admin.html';
+    if ($('dockAccount')) {
+      $('dockAccount').href = 'admin.html';
+      $('dockAccountLabel').textContent = 'Admin';
+    }
   } else {
     lb.textContent = 'Hi, ' + user.name.split(' ')[0] + ' · Logout';
     lb.href = '#';
     lb.onclick = (e) => { e.preventDefault(); localStorage.removeItem('edgeUser'); location.reload(); };
+    if ($('dockAccountLabel')) $('dockAccountLabel').textContent = user.name.split(' ')[0];
   }
+}
+
+// App Bottom Dock navigation
+if ($('dockHome')) {
+  const setDockActive = (id) => {
+    document.querySelectorAll('.app-dock__item').forEach((el) => el.classList.toggle('active', el.id === id));
+  };
+  $('dockHome').onclick = (e) => {
+    e.preventDefault();
+    setDockActive('dockHome');
+    $('home').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  $('dockMenu').onclick = (e) => {
+    e.preventDefault();
+    setDockActive('dockMenu');
+    openMenu(true);
+  };
+  $('dockCart').onclick = () => {
+    toggleDrawer(true);
+  };
 }

@@ -1011,6 +1011,106 @@ ul { list-style: none; }
   &__row { display: flex; flex-wrap: wrap; gap: 8px; }
 }
 
+// ---------- Dedicated App Home Page (app.html) ----------
+.app-mode {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding-bottom: 72px;
+
+  .app-hero {
+    padding-bottom: clamp(110px, 16vh, 150px);
+    @include mobile {
+      padding-bottom: clamp(82px, 12vh, 110px);
+    }
+  }
+
+  .app-menu {
+    padding-bottom: clamp(110px, 15vh, 140px);
+  }
+
+  .toast {
+    bottom: 84px;
+  }
+}
+
+.app-welcome {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: $peach;
+  color: $green;
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: clamp(.74rem, 1.2vw, .84rem);
+  font-weight: 700;
+  margin-bottom: 14px;
+  border: 1px solid rgba($green, .12);
+}
+
+.app-dock {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(440px, calc(100vw - 24px));
+  height: 62px;
+  background: rgba(#fff, .94);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba($green, .14);
+  border-radius: 40px;
+  box-shadow: 0 12px 32px rgba($green, .16);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 0 8px;
+  z-index: 85;
+
+  &__item {
+    border: 0;
+    background: none;
+    color: #5d6359;
+    font: 600 .72rem inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    height: 48px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: color .25s $ease, background .25s $ease, transform .25s $ease;
+
+    &.active {
+      background: $green;
+      color: #fff;
+    }
+    &:active {
+      transform: scale(.94);
+    }
+  }
+
+  &__icon-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+
+  &__badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    background: #e8a77a;
+    color: $green;
+    border-radius: 10px;
+    font-size: .65rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+}
+
 // ---------- Animations ----------
 .reveal { opacity: 0; animation: fadeUp 1s $ease forwards; animation-delay: var(--d, 0s); }
 .features.reveal { animation-name: fadeUpCenter; @include mobile { animation-name: fadeUp; } }
