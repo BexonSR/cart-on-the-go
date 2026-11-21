@@ -1528,7 +1528,7 @@ ul {
   gap: 8px;
 }
 
-html,
+html.app-lock,
 body.app-mode {
   position: fixed !important;
   inset: 0 !important;

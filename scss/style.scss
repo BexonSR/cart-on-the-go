@@ -1012,7 +1012,7 @@ ul { list-style: none; }
 }
 
 // ---------- Dedicated App Home Page (Non-Scrollable Tab App) ----------
-html,
+html.app-lock,
 body.app-mode {
   position: fixed !important;
   inset: 0 !important;
