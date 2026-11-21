@@ -1207,39 +1207,52 @@ body.app-mode {
     min-height: 0 !important;
     max-height: 100%;
     overflow: hidden !important;
-    padding: 16px clamp(16px, 5vw, 80px) 82px;
+    padding: clamp(10px, 2vh, 24px) clamp(16px, 5vw, 80px) 80px;
+    align-items: center;
     align-content: center;
-    gap: clamp(10px, 2vh, 28px);
+    gap: clamp(8px, 1.5vh, 24px);
 
     .login-hero {
       .brand { margin-bottom: clamp(8px, 1.5vh, 20px); }
       h1 { font-size: clamp(1.35rem, 3vw, 2.6rem); margin-bottom: 6px; }
-      p {
-        @include mobile { display: none; }
+
+      @include tablet {
+        .brand { margin-bottom: 0; }
+        h1, p { display: none; }
+      }
+      @media (max-height: 700px) {
+        .brand { margin-bottom: 4px; }
+        p { display: none; }
       }
     }
 
     .login-card {
-      padding: clamp(16px, 2.5vh, 30px) clamp(16px, 3.5vw, 34px);
-      h2 { font-size: clamp(1.25rem, 2.4vw, 1.7rem); margin-bottom: 2px; }
-      > p { margin-bottom: clamp(10px, 1.8vh, 18px); font-size: .8rem; }
-      &__or { margin-top: 10px; }
-      &__switch { margin-top: 8px; font-size: .78rem; }
-      &__hours { margin-top: 6px; font-size: .72rem; }
+      max-height: calc(100dvh - 125px);
+      overflow-y: auto;
+      scrollbar-width: none;
+      &::-webkit-scrollbar { display: none; }
+      padding: clamp(14px, 2.2vh, 28px) clamp(16px, 3.2vw, 34px);
+      h2 { font-size: clamp(1.18rem, 2.5vh, 1.65rem); margin-bottom: 2px; }
+      > p { margin-bottom: clamp(8px, 1.4vh, 16px); font-size: .78rem; }
+      &__or { margin-top: clamp(6px, 1.1vh, 12px); }
+      &__switch { margin-top: clamp(6px, 1vh, 10px); font-size: .8rem; }
+      &__hours { margin-top: clamp(4px, .8vh, 8px); font-size: .72rem; }
     }
 
     .auth-tabs {
-      margin-bottom: 12px;
-      &__tab { padding: 6px 12px; font-size: .78rem; }
+      margin-bottom: clamp(8px, 1.4vh, 14px);
+      &__tab { padding: 5px 12px; font-size: .76rem; }
     }
 
     .field {
-      height: clamp(38px, 5.2vh, 48px);
-      margin-bottom: clamp(8px, 1.2vh, 12px);
+      height: clamp(36px, 4.8vh, 46px);
+      margin-bottom: clamp(6px, 1vh, 11px);
+      border-radius: 13px;
     }
 
     .login-submit {
-      padding: 11px 24px;
+      padding: clamp(9px, 1.4vh, 13px) 22px;
+      margin-top: 4px;
     }
   }
 
