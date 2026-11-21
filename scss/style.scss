@@ -151,11 +151,7 @@ ul { list-style: none; }
       align-items: center;
     }
     h1 { font-size: clamp(1.85rem, 7vw, 2.5rem); margin-bottom: 10px; }
-    p {
-      font-size: clamp(.88rem, 3.4vw, 1.02rem);
-      margin-bottom: 16px;
-      br { display: none; }
-    }
+    p { display: none; }
     .btn {
       margin-top: auto;
       margin-bottom: 18px;

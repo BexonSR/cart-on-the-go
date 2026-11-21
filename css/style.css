@@ -268,10 +268,6 @@ ul {
     margin-bottom: 10px;
   }
   .hero p {
-    font-size: clamp(0.88rem, 3.4vw, 1.02rem);
-    margin-bottom: 16px;
-  }
-  .hero p br {
     display: none;
   }
   .hero .btn {
