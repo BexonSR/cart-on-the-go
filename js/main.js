@@ -49,8 +49,18 @@ renderMenu(activeCat);
 document.querySelectorAll('.menu .reveal').forEach((el) => io.observe(el));
 
 // Open hidden menu section when "Start Ordering" is pressed
+const setDockActive = (id) => {
+  document.querySelectorAll('.app-dock__item').forEach((el) => el.classList.toggle('active', el.id === id));
+};
+
 const openMenu = (scroll = true) => {
   const menu = $('menu');
+  const isApp = document.body.classList.contains('app-mode');
+  if (isApp) {
+    document.body.classList.add('menu-open');
+    setDockActive('dockMenu');
+    window.scrollTo(0, 0);
+  }
   if (!menu.classList.contains('is-open')) {
     menu.classList.add('is-open');
     menu.setAttribute('aria-hidden', 'false');
@@ -59,11 +69,20 @@ const openMenu = (scroll = true) => {
       io.observe(el);
     });
   }
-  if (scroll) {
+  if (scroll && !isApp) {
     requestAnimationFrame(() => {
       menu.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
+};
+
+const closeMenuToHome = () => {
+  const menu = $('menu');
+  document.body.classList.remove('menu-open');
+  menu.classList.remove('is-open');
+  menu.setAttribute('aria-hidden', 'true');
+  setDockActive('dockHome');
+  window.scrollTo(0, 0);
 };
 
 $('startOrdering').addEventListener('click', (e) => {
@@ -201,17 +220,12 @@ if (user) {
 
 // App Bottom Dock navigation
 if ($('dockHome')) {
-  const setDockActive = (id) => {
-    document.querySelectorAll('.app-dock__item').forEach((el) => el.classList.toggle('active', el.id === id));
-  };
   $('dockHome').onclick = (e) => {
     e.preventDefault();
-    setDockActive('dockHome');
-    $('home').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    closeMenuToHome();
   };
   $('dockMenu').onclick = (e) => {
     e.preventDefault();
-    setDockActive('dockMenu');
     openMenu(true);
   };
   $('dockCart').onclick = () => {

@@ -1012,20 +1012,51 @@ ul { list-style: none; }
 }
 
 // ---------- Dedicated App Home Page (app.html) ----------
+html:has(body.app-mode:not(.menu-open)),
+body.app-mode:not(.menu-open) {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
 .app-mode {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  padding-bottom: 72px;
+  overscroll-behavior: none;
 
   .app-hero {
-    padding-bottom: clamp(110px, 16vh, 150px);
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0 !important;
+    max-height: 100dvh;
+    overflow: hidden;
+    padding: clamp(100px, 14vh, 130px) 5vw clamp(92px, 13vh, 120px) 8vw;
+
     @include mobile {
-      padding-bottom: clamp(82px, 12vh, 110px);
+      padding: clamp(98px, 14vh, 122px) 6vw clamp(86px, 12.5vh, 105px);
+    }
+  }
+
+  .features {
+    bottom: clamp(82px, 12vh, 115px);
+    @include mobile {
+      bottom: auto;
+    }
+  }
+
+  &.menu-open {
+    .app-hero {
+      display: none;
     }
   }
 
   .app-menu {
-    padding-bottom: clamp(110px, 15vh, 140px);
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: clamp(105px, 15vh, 135px);
+    padding-bottom: clamp(96px, 13vh, 125px);
   }
 
   .toast {
