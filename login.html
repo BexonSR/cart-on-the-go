@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Login – Edge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+  <section class="login-hero">
+    <a href="index.html" class="brand reveal">
+      <div class="brand__edge">edge</div>
+      <span class="brand__divider"></span>
+      <span>Cart on the Go</span>
+    </a>
+    <h1 class="reveal" style="--d:.15s">Your Favourite Food,<br>Just a <span>Click Away</span></h1>
+    <p class="reveal" style="--d:.3s">Pre-order from Edge, the university restaurant, and grab your meal with ease.</p>
+  </section>
+
+  <main class="login-card">
+    <h2>Student Login</h2>
+    <p>Access your account to place an order</p>
+    <form id="loginForm" novalidate>
+      <label class="field">👤 <input id="name" type="text" placeholder="Student Name" autocomplete="name"></label>
+      <label class="field">🪪 <input id="sid" type="text" placeholder="Student ID"></label>
+      <label class="field">🏛️
+        <select id="faculty">
+          <option value="">Faculty</option>
+          <option>Engineering</option><option>Business</option><option>Science</option>
+          <option>Arts</option><option>Medicine</option><option>Law</option>
+        </select>
+      </label>
+      <button class="btn login-submit" type="submit">Login <span class="btn__arrow">→</span></button>
+    </form>
+    <div class="login-card__or">🍛</div>
+    <p class="login-card__hours">🕘 Ordering Hours: 9.00 AM – 5.00 PM</p>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/login.js"></script>
+</body>
+</html>
